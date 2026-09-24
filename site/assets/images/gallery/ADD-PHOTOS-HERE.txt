@@ -1,0 +1,3 @@
+Add your own gallery photos to this folder.
+Then edit ../../js/gallery-data.js or use tools/gallery-helper.html.
+Do not add this text file as a gallery entry.

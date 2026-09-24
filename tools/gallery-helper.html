@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-GB">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Gallery helper | Letts Decorate</title>
+<style>
+:root{--bg:#f8f6f0;--ink:#263a32;--clay:#ab4430;--line:#d9dacf;--muted:#626a60}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 'Segoe UI',Arial,sans-serif}header{background:var(--ink);color:var(--bg);padding:21px max(25px,calc((100% - 1000px)/2));display:flex;justify-content:space-between;gap:25px;font-size:12px}header strong{font-family:Georgia,serif;font-size:22px;font-weight:400}main{max-width:1050px;padding:60px 25px;margin:auto}h1,h2{font-family:Georgia,serif;font-weight:400;letter-spacing:-.04em;line-height:1.1}h1{font-size:52px;margin:0 0 20px}h1 em{color:var(--clay)}h2{font-size:28px;margin:0 0 18px}p{color:var(--muted)}.lead{max-width:690px}.eyebrow{font-size:10px;font-weight:600;letter-spacing:.15em;margin-bottom:20px}.note{padding:20px 24px;background:#e7e9dd;border-left:3px solid #66745d;margin:27px 0;color:var(--ink);font-size:13px}.steps{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin:36px 0}.panel{background:#fffefa;border:1px solid var(--line);padding:25px}.panel p{font-size:13px}.panel label{display:block;font-size:12px}input,select,button{font:inherit}input[type=file]{display:block;width:100%;max-width:100%;font-size:12px;margin:14px 0 4px}input[type=file]::file-selector-button{border:1px solid var(--line);background:#efede5;padding:10px 13px;color:var(--ink);cursor:pointer;margin-right:10px}button{border:0;border-radius:2px;background:var(--clay);color:#fff;padding:13px 20px;cursor:pointer;font-size:13px;min-height:44px}button:hover{filter:brightness(.92)}button:disabled{opacity:.5;cursor:default}.secondary{background:#e9e8de;color:var(--ink);border:1px solid var(--line)}.options{display:flex;gap:16px;margin-top:20px}.options label{font-size:11px}.options select{display:block;margin-top:5px;border:1px solid var(--line);padding:8px;background:white;color:var(--ink);font-size:12px}#status{font-size:13px;min-height:24px;padding-bottom:10px;color:var(--clay)}.toolbar{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:38px 0 18px}.toolbar h2{margin:0}.small{font-size:12px}#empty{border:1px dashed #aeb6a6;padding:40px;text-align:center;color:var(--muted)}.photo{display:grid;grid-template-columns:150px 1fr;gap:25px;border-top:1px solid var(--line);padding:25px 0}.photo-thumb{width:150px;aspect-ratio:1;object-fit:cover;background:#e6e7db}.existing{display:grid;place-items:center;font-size:12px;border:1px solid var(--line)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.field{font-size:11px;display:block}.field input,.field select{width:100%;border:1px solid #c6cbbb;padding:9px 10px;background:#fffefa;margin-top:5px;font-size:13px;color:var(--ink)}.field.alt{grid-column:1/-1}.filename{font-size:10px;color:var(--muted);overflow-wrap:anywhere;margin:10px 0}.row-actions{display:flex;gap:8px}.row-actions button{padding:6px 12px;font-size:11px;min-height:34px}.row-actions .remove{margin-left:auto;color:var(--clay);background:transparent;border:1px solid var(--line)}.download{border-top:1px solid var(--line);padding-top:30px;margin-top:25px}.download p{font-size:13px;max-width:700px}code{font-size:12px;background:#e9e8df;padding:2px 5px;overflow-wrap:anywhere}.footer{margin-top:50px;border-top:1px solid var(--line);padding-top:20px;font-size:11px;color:var(--muted)}:focus-visible{outline:3px solid var(--clay);outline-offset:3px}[hidden]{display:none!important}.drag-over{outline:3px dashed var(--clay);outline-offset:5px}@media(max-width:650px){main{padding:38px 20px}h1{font-size:40px}.steps{grid-template-columns:1fr}.photo{grid-template-columns:1fr;gap:15px}.photo-thumb{width:120px}.fields{grid-template-columns:1fr}.field.alt{grid-column:auto}.toolbar{align-items:flex-start;flex-direction:column}header{padding:17px 20px}header span{font-size:10px}.options{flex-wrap:wrap}}
+</style></head>
+<body><header><strong>Letts Decorate</strong><span>OFFLINE GALLERY HELPER</span></header><main>
+<div class="eyebrow">A LITTLE HELP BEHIND THE SCENES</div><h1>Good photos.<br><em>Ready for the web.</em></h1><p class="lead">Add your photographs, write a short description, then download the files for your website. This page processes images in your browser. It does not upload them or publish anything.</p>
+<div class="note"><strong>Adding to an existing gallery?</strong> Import your current <code>site/assets/js/gallery-data.js</code> first. The downloaded file replaces the complete gallery list, not just the new entries. Keep all existing image files in your repository.</div>
+<div class="steps"><section class="panel"><h2>01. Keep existing photos</h2><p>Optional for your first gallery. Import your current data file when adding to an existing one.</p><label for="import">Current gallery-data.js</label><input id="import" type="file" accept=".js,.json"><p class="small">Existing entries are kept by reference; their image files are not copied into the download.</p></section>
+<section class="panel" id="dropzone"><h2>02. Add new photos</h2><p>Choose or drag in JPG, PNG, WebP or AVIF files. Originals are not changed. Check that you have permission to publish them.</p><label for="photos">Project photographs</label><input id="photos" type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple><div class="options"><label>Maximum long edge<select id="edge"><option value="1200">1200 pixels</option><option value="1600" selected>1600 pixels</option><option value="2000">2000 pixels</option></select></label><label>WebP quality<select id="quality"><option value="0.76">76%</option><option value="0.84" selected>84%</option><option value="0.9">90%</option></select></label></div></section></div>
+<p id="status" role="status" aria-live="polite"></p><div class="toolbar"><h2>03. Give them a little context</h2><span id="count" class="small">0 photographs</span></div><p class="small">The first three photos appear on the homepage. Alternative text should describe what is actually visible, not just repeat the title. Avoid identifying customers or addresses.</p><div id="empty">Your photographs will appear here.</div><div id="list"></div>
+<section class="download"><button id="export" type="button" disabled>Download gallery update (.zip)</button><p>Extract the ZIP into your <code>letts-decorate</code> folder, merging its <code>site</code> folder with yours and replacing <code>gallery-data.js</code>. Preview the result, then commit and push the changes to GitHub to publish them.</p><p>The ZIP contains only your new image files and the complete gallery data file. It does not overwrite the rest of your website.</p></section><div class="footer">No account. No cloud upload. No third-party libraries. Keep this helper outside the deployed <code>site/</code> folder.</div>
+</main>
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const entries = [];
+let busy = false;
+const setStatus = text => { $('#status').textContent = text; };
+const categories = ['interior','exterior','detail'];
+const pathOK = s => typeof s === 'string' && /^assets\/images\/gallery\/[a-z0-9][a-z0-9._/-]*\.(webp|avif|jpe?g|png)$/i.test(s) && !s.includes('..');
+function node(tag, cls, text) { const n = document.createElement(tag); if(cls)n.className=cls; if(text!==undefined)n.textContent=text; return n; }
+function updateCount(){ $('#count').textContent = `${entries.length} photograph${entries.length===1?'':'s'}`; $('#empty').hidden=entries.length>0; $('#export').disabled=!entries.length||busy; }
+function field(label,value,onchange,cls='') {
+ const wrap=node('label','field '+cls,label); const input=node('input'); input.type='text'; input.value=value;
+ input.addEventListener('input',()=>onchange(input.value)); wrap.append(input); return wrap;
+}
+function render(){
+ $('#list').replaceChildren();
+ entries.forEach((entry,index)=>{
+  const card=node('article','photo');
+  if(entry.preview){ const image=node('img','photo-thumb'); image.src=entry.preview; image.alt='Preview of the selected project photograph'; card.append(image); }
+  else card.append(node('div','photo-thumb existing','Existing photograph'));
+  const content=node('div'); const fields=node('div','fields');
+  fields.append(field('Title',entry.data.title,value=>entry.data.title=value));
+  const category=node('label','field','Category'); const select=node('select');
+  const labels={interior:'Interior',exterior:'Exterior',detail:'Wallpaper / detail'};
+  categories.forEach(c=>{const option=node('option','',labels[c]);option.value=c;option.selected=c===entry.data.category;select.append(option);});
+  select.addEventListener('change',()=>entry.data.category=select.value);category.append(select);fields.append(category);
+  fields.append(field('Alternative text (describe the photograph)',entry.data.alt,value=>entry.data.alt=value,'alt'));
+  content.append(fields,node('p','filename',entry.data.src));
+  const actions=node('div','row-actions');
+  const up=node('button','secondary','Move up'); up.type='button';up.disabled=index===0;
+  up.addEventListener('click',()=>{[entries[index-1],entries[index]]=[entries[index],entries[index-1]];render();});
+  const down=node('button','secondary','Move down');down.type='button';down.disabled=index===entries.length-1;
+  down.addEventListener('click',()=>{[entries[index],entries[index+1]]=[entries[index+1],entries[index]];render();});
+  const remove=node('button','remove','Remove');remove.type='button';
+  remove.addEventListener('click',()=>{if(entry.preview)URL.revokeObjectURL(entry.preview);entries.splice(index,1);render();});
+  actions.append(up,down,remove);content.append(actions);card.append(content);$('#list').append(card);
+ });updateCount();
+}
+function slug(name){return name.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\.[^.]+$/,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)||'project';}
+async function convert(file){
+ const bitmap=await createImageBitmap(file,{imageOrientation:'from-image'});
+ const max=Number($('#edge').value);const scale=Math.min(1,max/Math.max(bitmap.width,bitmap.height));
+ const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));
+ const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Canvas is unavailable.');
+ ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(bitmap,0,0,canvas.width,canvas.height);bitmap.close();
+ const blob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(new Error('Image encoding failed')),'image/webp',Number($('#quality').value)));
+ const ext=blob.type==='image/webp'?'webp':'png';
+ let base=slug(file.name),name=`${base}.${ext}`,suffix=2;
+ while(entries.some(e=>e.data.src===`assets/images/gallery/${name}`))name=`${base}-${suffix++}.${ext}`;
+ const title=base.replace(/-/g,' ').replace(/^./,s=>s.toUpperCase());
+ return {data:{src:`assets/images/gallery/${name}`,title,alt:'',category:'interior',width:canvas.width,height:canvas.height},blob,preview:URL.createObjectURL(blob)};
+}
+async function addFiles(files){
+ if(busy)return;
+ const photos=[...files].filter(f=>/^image\/(jpeg|png|webp|avif)$/.test(f.type));
+ if(!photos.length){setStatus('Please choose JPG, PNG, WebP or AVIF files.');return;}
+ if(entries.length+photos.length>60){setStatus('Please keep this batch to 60 photographs or fewer.');return;}
+ busy=true;updateCount();let added=0;let failed=0;
+ for(const file of photos){try{setStatus(`Preparing ${file.name}...`);entries.push(await convert(file));added++;}catch(e){console.warn('Could not prepare image:',file.name,e);failed++;}}
+ busy=false;render();setStatus(`${added} photograph${added===1?'':'s'} prepared. Add alternative text to each before downloading.${failed?` ${failed} file(s) could not be read; try a JPG or PNG copy.`:''}`);
+ $('#photos').value='';
+}
+$('#photos').addEventListener('change',event=>addFiles(event.target.files));
+const drop=$('#dropzone');
+['dragenter','dragover'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.add('drag-over');}));
+['dragleave','drop'].forEach(type=>drop.addEventListener(type,e=>{e.preventDefault();drop.classList.remove('drag-over');}));
+drop.addEventListener('drop',e=>addFiles(e.dataTransfer.files));
+$('#import').addEventListener('change',async event=>{
+ if(busy){setStatus('Please wait for image preparation to finish.');return;}
+ const file=event.target.files[0];if(!file)return;
+ try{
+  const text=await file.text();const match=text.match(/window\.LETTS_GALLERY\s*=\s*(\[[\s\S]*\])\s*;?\s*$/);
+  const data=JSON.parse(match?match[1]:text);
+  if(!Array.isArray(data)||data.length>60)throw new Error('Invalid gallery array.');
+  if(data.some(d=>!d||!pathOK(d.src)||!categories.includes(d.category)||typeof d.title!=='string'||typeof d.alt!=='string'))throw new Error('Invalid gallery entries.');
+  let imported=0;
+  data.forEach(d=>{if(!entries.some(e=>e.data.src===d.src)){entries.push({data:{src:d.src,title:d.title,alt:d.alt,category:d.category,...(d.width?{width:d.width}:{}),...(d.height?{height:d.height}:{})},blob:null,preview:null});imported++;}});
+  render();setStatus(`${imported} existing gallery entries imported. Leave their image files in your website folder.`);
+ }catch(e){setStatus('Could not read that file. Select the original gallery-data.js, containing a JSON array assigned to window.LETTS_GALLERY.');}
+ event.target.value='';
+});
+// Small, standards-compliant ZIP writer (stored/uncompressed entries). Images are already compressed.
+const crcTable=Uint32Array.from({length:256},(_,n)=>{let c=n;for(let k=0;k<8;k++)c=c&1?0xedb88320^(c>>>1):c>>>1;return c>>>0;});
+function crc32(bytes){let crc=0xffffffff;for(const byte of bytes)crc=crcTable[(crc^byte)&255]^(crc>>>8);return(crc^0xffffffff)>>>0;}
+async function makeZip(files){
+ const enc=new TextEncoder();const chunks=[];const central=[];let offset=0;let centralSize=0;
+ for(const file of files){
+  const name=enc.encode(file.name);const bytes=file.data instanceof Uint8Array?file.data:new Uint8Array(await file.data.arrayBuffer());const crc=crc32(bytes);
+  const local=new Uint8Array(30+name.length);const l=new DataView(local.buffer);
+  l.setUint32(0,0x04034b50,true);l.setUint16(4,20,true);l.setUint16(6,0x0800,true);l.setUint16(12,33,true);l.setUint32(14,crc,true);l.setUint32(18,bytes.length,true);l.setUint32(22,bytes.length,true);l.setUint16(26,name.length,true);local.set(name,30);
+  chunks.push(local,bytes);
+  const cd=new Uint8Array(46+name.length);const c=new DataView(cd.buffer);
+  c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint16(14,33,true);c.setUint32(16,crc,true);c.setUint32(20,bytes.length,true);c.setUint32(24,bytes.length,true);c.setUint16(28,name.length,true);c.setUint32(42,offset,true);cd.set(name,46);central.push(cd);centralSize+=cd.length;offset+=local.length+bytes.length;
+ }
+ const end=new Uint8Array(22);const e=new DataView(end.buffer);e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,centralSize,true);e.setUint32(16,offset,true);
+ return new Blob([...chunks,...central,end],{type:'application/zip'});
+}
+$('#export').addEventListener('click',async()=>{
+ if(busy)return;
+ const missing=entries.findIndex(e=>!e.data.title.trim()||!e.data.alt.trim());
+ if(missing!==-1){setStatus(`Add a title and alternative text for photograph ${missing+1} before downloading.`);$('#list').children[missing].scrollIntoView({behavior:'smooth',block:'center'});return;}
+ busy=true;updateCount();
+ try{
+  const data=entries.map(e=>({...e.data,title:e.data.title.trim(),alt:e.data.alt.trim()}));
+  const code='/* Generated by the Letts Decorate offline gallery helper. */\nwindow.LETTS_GALLERY = '+JSON.stringify(data,null,2)+';\n';
+  const files=[{name:'site/assets/js/gallery-data.js',data:new TextEncoder().encode(code)}];
+  for(const entry of entries)if(entry.blob)files.push({name:'site/'+entry.data.src,data:entry.blob});
+  const zip=await makeZip(files);const url=URL.createObjectURL(zip);const a=document.createElement('a');a.href=url;a.download='letts-decorate-gallery-update.zip';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),30000);
+  setStatus('Gallery ZIP created. Merge it into your website folder, preview the changes and commit them to GitHub.');
+ }catch(e){setStatus('The ZIP could not be created. Please try a smaller batch in a current version of Edge or Chrome.');}
+ busy=false;updateCount();
+});
+})();
+</script></body></html>

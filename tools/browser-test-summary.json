@@ -1,0 +1,102 @@
+{
+  "pages": [
+    {
+      "page": "home",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "services",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "about",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "gallery",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "testimonials",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "contact",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "privacy",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    },
+    {
+      "page": "404",
+      "tested_widths": [
+        320,
+        390,
+        768,
+        1024,
+        1440
+      ],
+      "horizontal_overflow": false
+    }
+  ],
+  "broken_local_links": [],
+  "browser_errors": [],
+  "interaction_checks": [
+    "Colour inspiration buttons update visual and pressed state",
+    "Mobile navigation opens, closes and restores focus with Escape",
+    "Empty gallery filters the three labelled placeholder categories",
+    "Fixture gallery: photo rendering, modal, arrow keys, Escape, focus return, category filtering and no-results state",
+    "Copy-email gives success feedback or a clear manual-copy fallback",
+    "Offline helper: real WebP conversion, alt text, valid CRC-checked ZIP, expected paths, and duplicate-safe gallery import"
+  ]
+}
